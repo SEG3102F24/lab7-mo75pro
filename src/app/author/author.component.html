@@ -1,0 +1,25 @@
+<div class="author-search-container">
+  <h2>Search for Author by ID</h2>
+  <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+    <label for="authorId">Author ID:</label>
+    <input id="authorId" formControlName="authorId" type="text" placeholder="Enter Author ID" />
+    <button type="submit">Search</button>
+  </form>
+
+  <div *ngIf="authorDetails" class="author-details">
+    <h3>Author Details</h3>
+    <p><strong>ID:</strong> {{ authorDetails.id }}</p>
+    <p><strong>First Name:</strong> {{ authorDetails.firstName }}</p>
+    <p><strong>Last Name:</strong> {{ authorDetails.lastName }}</p>
+    <p *ngIf="authorDetails.biography"><strong>Biography:</strong> {{ authorDetails.biography }}</p>
+    <p *ngIf="authorDetails.books"><strong>Books:</strong></p>
+    <ul *ngIf="authorDetails.books">
+      <li *ngFor="let book of authorDetails.books">{{ book.title }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+</div>
+
